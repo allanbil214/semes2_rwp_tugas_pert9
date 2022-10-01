@@ -1,0 +1,177 @@
+{% include 'head.html' %}
+<body>
+<div class="content-wrapper">
+<section class="content-header">
+<div class="container-fluid">
+  <div class="p-3 bg-secondary text-white rounded">
+    <h2>Armaments Data</h2>
+    <p>This is the data for our Weaponry or Armaments in Akihiko Dojo</p>    
+  </div>  
+</div>
+</div>
+{% for data in pData %}
+<div class="content-wrapper">
+<section class="content">
+  <div class="container-fluid">   
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-secondary">
+          <div class="card-header">
+            <h3 class="card-title">Edit Armaments</h3>
+          </div>
+          <form role="form" action="/edit_save" method="POST">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="fs-5">ID</label>
+                    <input type="hidden" value="{{ data.0 }}" name="oldID" >
+                    <input type="number" class="form-control" 
+                    name="txtID" placeholder="Enter the ID" 
+                    value="{{ data.0 }}" required>
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label class="fs-5">Name</label>
+                    <input type="text" class="form-control" 
+                    name="txtName" value="{{ data.1 }}" 
+                    placeholder="Enter the Armaments name" required>
+                  </div>
+                </div>
+              </div> 
+              <div class="row pt-2 pb-2">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-1">
+                      <label class="fs-5">Rarity</label>
+                      <div class="form-group pt-2 pb-2">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" 
+                          value="Lord" name="rarity" 
+                          {{ "checked" if data.2=="Lord" }}>
+                          <label class="form-check-label">
+                            Lord
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" 
+                          value="Hero" name="rarity" 
+                          {{ "checked" if data.2=="Hero" }}>
+                          <label class="form-check-label">
+                            Hero
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" 
+                          value="Adventurer" name="rarity" 
+                          {{ "checked" if data.2=="Adventurer" }}>
+                          <label class="form-check-label">
+                            Numen
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" 
+                          value="Commoner" name="rarity" 
+                          {{ "checked" if data.2=="Commoner" }}>
+                          <label class="form-check-label">
+                            Common
+                          </label>
+                        </div>
+                      </div>     
+                    </div>
+                    <div class="col-sm-4">
+                      <label class="fs-5">Affinity</label>
+                      <div class="form-group pb-2 pt-2">
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" 
+                              value="Arcane" name="affinity" 
+                              {{ "checked" if "Arcane" in data.3 }}>
+                              <label class="form-check-label" >
+                                Arcane
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" 
+                              value="Faith" name="affinity" 
+                              {{ "checked" if "Faith" in data.3 }}>
+                              <label class="form-check-label" >
+                                Faith
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" 
+                              value="Intelligence" name="affinity" 
+                              {{ "checked" if "Intelligence" in data.3 }}>
+                              <label class="form-check-label" >
+                                Intelligence
+                              </label>
+                            </div>
+                          </div>
+                          <div class="col-sm-3">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" 
+                              value="Strength" name="affinity" 
+                              {{ "checked" if "Strength" in data.3 }}>
+                              <label class="form-check-label" >
+                                Strength
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" 
+                              value="Dexterity" name="affinity" 
+                              {{ "checked" if "Dexterity" in data.3 }}>
+                              <label class="form-check-label" >
+                                Dexterity
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>                  
+              <div class="form-group">
+                <label class="fs-5">Armaments Type</label>
+                <select class="form-select" id="itemType" name="itemType">
+                  <option value="0">-- Select Armaments Type --</option>
+                  <option value="Dagger" 
+                  {{ "selected" if data.4=="Dagger" }}>Dagger</option>
+                  <option value="Sword" 
+                  {{ "selected" if data.4=="Sword" }}>Sword</option>
+                  <option value="Axe" 
+                  {{ "selected" if data.4=="Axe" }}>Axe</option>
+                  <option value="Hammer" 
+                  {{ "selected" if data.4=="Hammer" }}>Hammer</option>
+                  <option value="Flail" 
+                  {{ "selected" if data.4=="Flail" }}>Flail</option>
+                  <option value="Spear" 
+                  {{ "selected" if data.4=="Spear" }}>Spear</option>
+                  <option value="Staff" 
+                  {{ "selected" if data.4=="Staff" }}>Staff</option>
+                  <option value="Sacred Seal" 
+                  {{ "selected" if data.4=="Sacred Seal" }}>Sacred Seal</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="fs-5">Description</label>
+                <textarea class="form-control" name="txtDesc" 
+                placeholder="Enter the Description or Lore" rows="4" 
+                required>{{ data.5 }}</textarea>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-success btn-block">Submit</button>
+              <a href="/" class="btn btn-secondary"><span>Go Back</span></a>
+            </div>
+          </form>
+        </div>
+    </div>
+</section>
+</div>
+{% endfor %}
+</body>
+</html>
